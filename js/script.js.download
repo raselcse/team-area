@@ -1,0 +1,1095 @@
+jQuery(document).ready(function ($) {
+    /*Google analytics clicks*/
+    $('#pricingTryTeamgateNow').on('click', function() {
+        ga('send', 'event', 'tryTGFromPricing', 'tryTGBtn');
+    });
+    $('.TGvsAlternativesGAClick').on('click', function() {
+        ga('send', 'event', 'TGvsAlternatives', 'TGvsAlternativesClickBtn');
+    });
+    $('.signUpBtnGA').on('click', function() {
+        ga('send', 'event', 'signUpBtnEN', 'signUpBtnENClick');
+    });
+    $('.convincedYetBtnGA input').on('click', function() {
+        ga('send', 'event', 'ConvincedYetBtnEN', 'ConvincedYetBtnClick');
+    });
+    $('.contactFormBtnGA input').on('click', function() {
+        ga('send', 'event', 'contactFormSendBtnEN', 'contactFormSendBtnClick');
+    });
+    $('.askPersonalDemoBtnGA').on('click', function() {
+        ga('send', 'event', 'askPersonalDemoBtnEN', 'askPersonalDemoBtnClick');
+    });
+    $('.popupSheduleDemoBtnGA').on('click', function() {
+        ga('send', 'event', 'popupSheduleDemoBtn', 'popupSheduleDemoBtnGAClick');
+    });
+    /*Google analytics clicks finish*/
+
+    $('#pBackground1').mouseParallax({ moveFactor: 5 });
+    $('#pBackground2').mouseParallax({ moveFactor: 15 });
+    $('#pBackground3').mouseParallax({ moveFactor: 25 });
+
+    $('.experienceBlock .experienceRow .experience .link a').hover(
+        function() {
+          $( this ).closest('.experience').addClass( "hover" );
+        }, function() {
+          $( this ).closest('.experience').removeClass( "hover" );
+        }
+    );
+//    function slideToHash(){
+//       var hash = window.location.hash;
+//       if(hash){
+//           console.log(hash);
+//
+//       }
+//    }
+//    slideToHash();
+//    var exitPopupCookie = getCookie('viewedExitPopupWP');
+//    if(exitPopupCookie){
+//        console.log('cookie');
+//    }else{
+////        if(document.location.pathname === '/teamgateWEB2/request-form/' ){
+////            console.log('bbb');
+////        setCookie('viewedExitPopupWP', '', 3600);
+////        }
+//    }
+    $('[data-zoom="len"]').elevateZoom({
+      zoomType				: "lens",
+      lensShape : "round",
+      lensSize    : 200
+    });
+
+    $('a[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 80
+                }, 1000);
+                return false;
+            }
+        }
+    });
+    $('.vAlignRow').each(function() {
+        var rowHeight = $(this).height();
+        $(this).find('.verticalMiddle').height(rowHeight);
+    });
+    $('.view-more button').click(function(){
+        $(this).closest('.view-more').hide();
+        $(this).closest('.view-more').nextAll('.row').slideDown();
+    });
+    $('.load-more button').click(function(){
+        $(this).closest('.load-more').css('visibility', 'hidden');
+        $('.processBlock ul li > ul').slideDown();
+    });
+    $( '.testimonialsBlock .testimonial' ).click(function() {
+            $( '.testimonialsBlock .testimonial' ).removeClass('active zoomIn animated').addClass('closed');
+            $(this).removeClass('closed').addClass('active zoomIn animated');
+            testimonialsPosition();
+            clearInterval(ReviewRotation);
+            setReviewsShowTimeout();
+    });
+    function testimonialsPosition() {
+        if($('.testimonial1').hasClass('active')){
+            $('.testimonial6').addClass('testimon1');
+            $('.testimonial3').addClass('testimon1');
+        }
+        else{
+            $('.testimonial').removeClass('testimon1');
+        }
+
+        if($('.testimonial3').hasClass('active')){
+            $('.testimonial6').addClass('testimon3');
+            $('.testimonial3').addClass('testimon3');
+            $('.testimonial1').addClass('testimon3');
+        }else{
+            $('.testimonial').removeClass('testimon3');
+        }
+
+        if($('.testimonial5').hasClass('active')){
+            $('.testimonial6').addClass('testimon5');
+            $('.testimonial2').addClass('testimon5');
+            $('.testimonial4').addClass('testimon5');
+        }else{
+            $('.testimonial').removeClass('testimon5');
+        }
+
+        if($('.testimonial2').hasClass('active')){
+            $('.testimonial5').addClass('testimon2');
+            $('.testimonial6').addClass('testimon2');
+            $('.testimonial4').addClass('testimon2');
+        }else{
+            $('.testimonial').removeClass('testimon2');
+        }
+
+        if($('.testimonial4').hasClass('active')){
+            $('.testimonial5').addClass('testimon4');
+            $('.testimonial6').addClass('testimon4');
+            $('.testimonial2').addClass('testimon4');
+        }else{
+            $('.testimonial').removeClass('testimon4');
+        }
+    }
+
+    function customShow() {
+        var random = Math.floor(Math.random() * 1000);
+        var $li = $(".testimonialsBlock .testimonial");
+        $li.eq(random % $li.length).addClass("active zoomIn animated").removeClass('closed');
+        testimonialsPosition();
+    }
+    customShow();
+    testimonialsPosition();
+    var ReviewRotation = null;
+    setReviewsShowTimeout();
+
+    function setReviewsShowTimeout(){
+        ReviewRotation = setInterval(function () {
+            $(".testimonialsBlock .testimonial").removeClass('active zoomIn animated').addClass('closed');
+            customShow(); // show next div
+        }, 10000); // do this every 10 seconds
+    }
+
+
+    /*utm source start*/
+    if (window.location.href.indexOf("utm_source") > -1) {
+        var url      = window.location.href;
+        setCookie("cookie_utmSource", url, "", "");
+    }
+    /*utm source finish*/
+
+    jQuery( '.buttonsBlock a:not(.active)').on( "mouseover", function() {
+        var tooltip = $(this).find('.slideTooltip');
+        var elWidth = tooltip.width();
+        var tooltipPosition = (-elWidth/2)+5;
+        tooltip.css({left:tooltipPosition});
+    });
+    function get_height() {
+
+        if (jQuery(window).width() < 601) {
+
+            return jQuery(window).height();
+        } else {
+            return jQuery(window).height();
+        }
+
+    }
+
+    var str = document.referrer;
+var res = str.match(/teamgate.com/g);
+if(!res){
+  if (setCookie('referrer') == null ) {
+      setCookie('referrer', document.referrer);
+   }
+}
+var str = document.referrer;
+var timestamp = jQuery.now();
+var tg = str.match(/teamgate.com/g);
+var oldLocalStorage = JSON.parse(localStorage.getItem('referrerStore'));
+
+if(oldLocalStorage === null || oldLocalStorage.length === 0){
+    var oldLocalStorage = {};
+     var finalLocalStorage = localStorage.setItem("referrerStore", JSON.stringify(oldLocalStorage) );
+}
+
+if(!tg && str!==''){
+    oldLocalStorage[str]=timestamp;
+    var finalLocalStorage = localStorage.setItem("referrerStore", JSON.stringify(oldLocalStorage) );
+}
+ jQuery('#referrer').val(localStorage.getItem("referrerStore"));
+
+
+//     teamgate_slider();
+//
+//     function teamgate_slider() {
+//
+//         var height = get_height();
+//
+//         jQuery('#teamgate-slider').camera({
+//             height: height + 'px',
+//             loader: 'bar',
+//             overlay: false,
+//             fx: 'simpleFade',
+//             pagination: false,
+//             thumbnails: false,
+//             transPeriod: 1000,
+//             overlayer: false,
+//             playPause: false,
+//             hover: false,
+//         });
+//     }
+
+/* ================= TITULINIO PUSLAPIO KARUSELE ------> START  =================== */
+    var counter = 0,
+        divs = $('.slide1, .slide2, .slide3, .slide4, .slide5');
+
+    function showDiv () {
+        divs.hide() // hide all divs
+            .filter(function (index) { return index == counter % 5; }) // figure out correct div to show
+            .show(); // and show it
+
+        counter++;
+    }; // function to loop through divs and show correct div
+
+    showDiv(); // show first div
+
+    //    setInterval(function () {
+//        showDiv(); // show next div
+//    }, 10 * 1500); // do this every 10 seconds
+
+    jQuery( ".sliderLinksBlock p" ).on( "click", function() {
+        if(!jQuery(this).hasClass('active')){
+            divs.hide().removeClass('active'); // hide all divs
+            jQuery('.slide'+ jQuery(this).data('attribute')).addClass('active').show(); // and show it
+        }
+    });
+/* ================= TITULINIO PUSLAPIO KARUSELE ------> END  =================== */
+
+
+/* ================= OVERVIEW PUSLAPIO KARUSELE ------> START  =================== */
+    var slideCounter = 0;
+    var carouselDivs = $('.verticalCarouselBlock .slide');
+
+    $('.verticalCarouselBlock .slide').each(function() {
+        var index = $(this).index();
+        $(this).addClass('vSlide'+ index );
+        $('.verticalCarouselSettingsBlock .bulletsBlock').append('<a class="verticalCarouselBullet vSlide'+index+'" data-slideid="'+index+'"></a>');
+    });
+if ($(window).width() < 768) {
+    function showCarouselDiv () {
+        var carouselIndex = slideCounter % carouselDivs.length +1;
+        $('.verticalCarouselSettingsBlock .verticalCarouselBullet').removeClass('active');
+        carouselDivs.hide().removeClass('active slideInRight animated') // hide all divs
+            .filter(function (index) { return index == slideCounter % carouselDivs.length;}) // figure out correct div to show
+            .addClass('active slideInRight animated').show()
+            .closest('.verticalCarouselBlock').find('.verticalCarouselSettingsBlock .vSlide'+ carouselIndex).addClass('active'); // and show it
+        slideCounter++;
+    }; // function to loop through divs and show correct div
+}
+else {
+    function showCarouselDiv () {
+        var carouselIndex = slideCounter % carouselDivs.length +1;
+        $('.verticalCarouselSettingsBlock .verticalCarouselBullet').removeClass('active');
+        jQuery('.verticalCarouselBlock .slide.next').removeClass('next slideInUp animated');
+        carouselDivs.hide().removeClass('active slideInUp animated') // hide all divs
+            .filter(function (index) { return index == slideCounter % carouselDivs.length;}) // figure out correct div to show
+            .addClass('active slideInUp animated').show()
+            .closest('.verticalCarouselBlock').find('.verticalCarouselSettingsBlock .vSlide'+ carouselIndex).addClass('active'); // and show it
+            carouselAlign();
+            carouselBulletBlockAlign();
+            if(jQuery('.verticalCarouselBlock .slide.active').index()==1){
+                jQuery('.verticalCarouselBlock .slide.active').next().show().addClass('next slideInUp animated');
+            }else if(jQuery('.verticalCarouselBlock .slide.active').index()==jQuery('.verticalCarouselBlock .slide').length){
+                jQuery('.verticalCarouselBlock .slide').first().show().addClass('next slideInUp animated');
+            }else{
+                jQuery('.verticalCarouselBlock .slide.active').next().show().addClass('next slideInUp animated');
+            }
+        slideCounter++;
+    }; // function to loop through divs and show correct div
+
+}
+
+    showCarouselDiv();
+    var rotation = null;
+    setRotationTimeout();
+
+    function setRotationTimeout(){
+        rotation = setInterval(function () {
+            showCarouselDiv(); // show next div
+        }, 10000); // do this every 10 seconds
+    }
+
+   if ($(window).width() < 768) {
+   jQuery( ".verticalCarouselBullet" ).on( "click", function() {
+        if(!jQuery(this).hasClass('active')){
+            clearInterval(rotation);
+            $('.verticalCarouselSettingsBlock .verticalCarouselBullet').removeClass('active');
+            carouselDivs.hide().removeClass('slideInRight animated active'); // hide all divs
+            jQuery('.slide.vSlide'+ jQuery(this).data('slideid')).addClass('slideInRight animated active').show()
+            .closest('.verticalCarouselBlock').find('.verticalCarouselSettingsBlock .vSlide'+ jQuery(this).data('slideid')).addClass('active'); // and show it
+            slideCounter = $(this).data('slideid');
+            setRotationTimeout();
+        }
+    });
+}
+else {
+   jQuery( ".verticalCarouselBullet" ).on( "click", function() {
+        if(!jQuery(this).hasClass('active')){
+            clearInterval(rotation);
+            $('.verticalCarouselSettingsBlock .verticalCarouselBullet').removeClass('active');
+            carouselDivs.hide().removeClass('slideInUp animated active'); // hide all divs
+            jQuery('.verticalCarouselBlock .slide.next').removeClass('next');
+            jQuery('.slide.vSlide'+ jQuery(this).data('slideid')).addClass('slideInUp animated active').show()
+            .closest('.verticalCarouselBlock').find('.verticalCarouselSettingsBlock .vSlide'+ jQuery(this).data('slideid')).addClass('active'); // and show it
+            slideCounter = $(this).data('slideid');
+            setRotationTimeout();
+            carouselAlign();
+            carouselBulletBlockAlign();
+            if(jQuery('.verticalCarouselBlock .slide.active').index()==1){
+                jQuery('.verticalCarouselBlock .slide.active').next().show().addClass('next slideInUp animated');
+            }else if(jQuery('.verticalCarouselBlock .slide.active').index()==jQuery('.verticalCarouselBlock .slide').length){
+                jQuery('.verticalCarouselBlock .slide').first().show().addClass('next slideInUp animated');
+            }else{
+                jQuery('.verticalCarouselBlock .slide.active').next().show().addClass('next slideInUp animated');
+            }
+        }
+    });
+}
+
+$( '.verticalCarouselBlock .slide .row' ).hover(
+       function() {
+         clearInterval(rotation);
+         $('.verticalCarouselBullet.active').addClass('paused');
+       }, function() {
+         setRotationTimeout();
+         $('.verticalCarouselBullet.active').removeClass('paused');
+       }
+   );
+   if ($(window).width() < 768) {
+
+}
+else {
+   carouselBulletBlockAlign();
+    carouselAlign();
+}
+
+/* ====== industries page script =====*/
+
+//jQuery( ".industriesButtonsBlock a" ).on( "click", function() {
+//    jQuery( ".industriesButtonsBlock a.active" ).removeClass('active');
+//    jQuery(this).addClass('active');
+//    var activeBlock = jQuery( ".industriesButtonsBlock a.active" ).data('attribute');
+//
+//    jQuery('.industriesCategoryBlock').removeClass('active');
+//    jQuery('.industriesCategoryBlock.'+activeBlock).addClass('active');
+//});
+
+jQuery( ".SlideSubButtonsBlock.business a" ).on( "click", function() {
+    jQuery( ".SlideSubButtonsBlock.business a.active" ).removeClass('active');
+    jQuery(this).addClass('active');
+    var activeAttr = jQuery( ".SlideSubButtonsBlock.business a.active" ).data('attribute');
+
+    jQuery('.businessBlock .subSlide').removeClass('active');
+    jQuery('.businessBlock .subSlide[data-attribute="'+activeAttr+'"]').addClass('active');
+});
+
+jQuery( ".SlideSubButtonsBlock.role a" ).on( "click", function() {
+    jQuery( ".SlideSubButtonsBlock.role a.active" ).removeClass('active');
+    jQuery(this).addClass('active');
+    var activeAttr = jQuery( ".SlideSubButtonsBlock.role a.active" ).data('attribute');
+
+    jQuery('.roleBlock .subSlide').removeClass('active');
+    jQuery('.roleBlock .subSlide[data-attribute="'+activeAttr+'"]').addClass('active');
+});
+
+jQuery( ".SlideSubButtonsBlock.industry a" ).on( "click", function() {
+    jQuery( ".SlideSubButtonsBlock.industry a.active" ).removeClass('active');
+    jQuery(this).addClass('active');
+    var activeAttr = jQuery( ".SlideSubButtonsBlock.industry a.active" ).data('attribute');
+
+    jQuery('.industryBlock .subSlide').removeClass('active');
+    jQuery('.industryBlock .subSlide[data-attribute="'+activeAttr+'"]').addClass('active');
+});
+
+
+
+});
+function carouselAlign(){
+    jQuery('.verticalCarouselBlock .slide .leftBlock').css({paddingTop:'0px', paddingBottom:'0px'});
+    jQuery('.verticalCarouselBlock .slide .rightBlock').css({paddingTop:'0px', paddingBottom:'0px'});
+    var leftSidePaddings = (jQuery('.verticalCarouselBlock').height()-jQuery('.verticalCarouselBlock .slide.active .leftBlock').height())/2;
+    var rightSidePaddings = (jQuery('.verticalCarouselBlock').height()-jQuery('.verticalCarouselBlock .slide.active .rightBlock').height())/2;
+    jQuery('.verticalCarouselBlock .slide.active .leftBlock').css({paddingTop:leftSidePaddings, paddingBottom:leftSidePaddings});
+    jQuery('.verticalCarouselBlock .slide.active .rightBlock').css({paddingTop:rightSidePaddings, paddingBottom:rightSidePaddings});
+}
+function carouselBulletBlockAlign(){
+    var bulletsBlockHeight = jQuery('.bulletsBlock').height();
+    var paddings = (jQuery('.verticalCarouselBlock').height() - bulletsBlockHeight)/2;
+    jQuery('.bulletsBlock').css({paddingTop:paddings, paddingBottom:paddings});
+}
+
+/* ================= OVERVIEW PUSLAPIO KARUSELE ------> END  =================== */
+
+/* ================= PRICING PLANS ------> START  =================== */
+  /*
+ **	Set cookie
+ */
+
+function setCookie (name, value, expires, path, domain, secure) {
+      document.cookie = name + "=" + encodeURIComponent(value) +
+        ((expires) ? "; expires=" + expires : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+}
+
+/*
+ **	Get cookie
+ */
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+function changeCurrancy(element) {
+    "use strict";
+
+    if (jQuery('.currancies').length) {
+        jQuery('.currancies').find('.btn').removeClass('active');
+        jQuery(element).addClass('active');
+        var paytime = jQuery('.curranciesPayTime .btn.active').data('paytime');
+        var currancy = jQuery(element).data('currancy');
+        var price_starter = jQuery('.currancies').data('price_starter');
+        var price_pro = jQuery('.currancies').data('price_pro');
+        var price_enterprice = jQuery('.currancies').data('price_enterprice');
+        var totalPrice = jQuery('.currancies').data('totalprice');
+        var currancySymbol = jQuery(element).text();
+        var changedPriceStarter = Math.round(price_starter).toFixed(0);
+        var changedPricePro = Math.round(price_pro).toFixed(0);
+        var changedPriceEnterprice = Math.round(price_enterprice).toFixed(0);
+        var changedTotalPrice = Math.round(totalPrice).toFixed(0);
+    if(paytime === 'annually'){
+        jQuery('.saveBlock').removeClass('invisible');
+        if (currancy === 'eur') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '8');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '20');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '35');
+        } else if (currancy === 'pounds') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '6');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '16');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '28');
+        } else if (currancy === 'dollars') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '9');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '22');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '39');
+        }
+    }else{
+         jQuery('.saveBlock').addClass('invisible');
+        if (currancy === 'eur') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '10');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '25');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '44');
+        } else if (currancy === 'pounds') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '8');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '20');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '35');
+        } else if (currancy === 'dollars') {
+            jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '11');
+            jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '29');
+            jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '49');
+        }
+    }
+
+        setCookie("cookie_currancy", currancy, "", "");
+    }
+}
+function changeCurrancyTime(element) {
+    "use strict";
+
+   if (jQuery('.curranciesPayTime').length) {
+        jQuery('.curranciesPayTime').find('.btn').removeClass('active');
+        jQuery(element).addClass('active');
+        var paytime = jQuery(element).data('paytime');
+        if(paytime === 'monthly'){
+            jQuery('.prices-block .price-block .paymentType .anually').text('billed monthly');
+            jQuery('.prices-block .price-block .paymentType .anually.lt').text('Mokant už mėnesį');
+        }else{
+            jQuery('.prices-block .price-block .paymentType .anually').text('billed annually');
+            jQuery('.prices-block .price-block .paymentType .anually.lt').text('Mokant už metus');
+        }
+        var currancy = jQuery('.currancies .btn.active').data('currancy');
+        var price_starter = jQuery('.currancies').data('price_starter');
+        var price_pro = jQuery('.currancies').data('price_pro');
+        var price_enterprice = jQuery('.currancies').data('price_enterprice');
+        var totalPrice = jQuery('.currancies').data('totalprice');
+        var currancySymbol = jQuery('.currancies .btn.active').text();
+        var changedPriceStarter = Math.round(price_starter).toFixed(0);changeCurrancyTime
+        var changedPricePro = Math.round(price_pro).toFixed(0);
+        var changedPriceEnterprice = Math.round(price_enterprice).toFixed(0);
+        var changedTotalPrice = Math.round(totalPrice).toFixed(0);
+        if(paytime === 'monthly'){
+             jQuery('.saveBlock').addClass('invisible');
+            if (currancy === 'eur') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '10');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '25');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '44');
+            } else if (currancy === 'pounds') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '8');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '20');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '35');
+            } else if (currancy === 'dollars') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '11');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '29');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '49');
+            }
+        }else{
+             jQuery('.saveBlock').removeClass('invisible');
+            if (currancy === 'eur') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '8');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '20');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '35');
+            } else if (currancy === 'pounds') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '6');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '16');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '28');
+            } else if (currancy === 'dollars') {
+                jQuery('.prices-block .price-block .price.starter').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '9');
+                jQuery('.prices-block .price-block .price.pro').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '22');
+                jQuery('.prices-block .price-block .price.enterprice').html('<span class="currencySymbol">'+ currancySymbol + '</span>' + '39');
+            }
+        }
+
+        //setCookie("cookie_currancyTime", paytime, "", "");
+    }
+}
+
+jQuery(document).ready(function ($) {
+    $( ".pricing_list:visible:odd" ).css( "background-color", "#f9f9f9" );
+   $( ".showMoreBtn" ).addClass('tada animated');
+    $( ".showMoreBtn.en" ).on( "click", function() {
+    if($(this).hasClass('open')){
+        $(this).removeClass('open');
+        //$(this).hide();
+        $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i> Collapse all');
+        $('.showMoreBlock').removeClass('hidden');
+         //$('.showMoreBlock').show();
+        //$('.showMoreBlock').slideToggle().animate(50);
+        $( ".pricing_list" ).css( "background-color", "#fff" );
+        $( ".pricing_list:odd" ).css( "background-color", "#f9f9f9" );
+    }else{
+        $(this).addClass('open');
+        $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i> Expand all');
+        //$('.showMoreBlock').slideToggle().animate(50);
+        $('.showMoreBlock').addClass('hidden');
+        //$('.showMoreBlock').hide();
+        $('.pricing_list.active .expand').hide();
+        $('.pricing_list.active').removeClass('active');
+        $( ".pricing_list" ).css( "background-color", "#fff" );
+        $( ".pricing_list:visible:odd" ).css( "background-color", "#f9f9f9" );
+    }
+    });
+    $( ".showMoreBtn.lt" ).on( "click", function() {
+    if($(this).hasClass('open')){
+        $(this).removeClass('open');
+        //$(this).hide();
+        $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i> Suskleisti');
+        $('.showMoreBlock').removeClass('hidden');
+         //$('.showMoreBlock').show();
+        //$('.showMoreBlock').slideToggle().animate(50);
+        $( ".pricing_list" ).css( "background-color", "#fff" );
+        $( ".pricing_list:odd" ).css( "background-color", "#f9f9f9" );
+    }else{
+        $(this).addClass('open');
+        $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i> Išskleisti');
+        //$('.showMoreBlock').slideToggle().animate(50);
+        $('.showMoreBlock').addClass('hidden');
+        //$('.showMoreBlock').hide();
+        $('.pricing_list.active .expand').hide();
+        $('.pricing_list.active').removeClass('active');
+        $( ".pricing_list" ).css( "background-color", "#fff" );
+        $( ".pricing_list:visible:odd" ).css( "background-color", "#f9f9f9" );
+    }
+    });
+
+    $( "body" ).on( "click", ".colrow.pricing_list", function() {
+        if($(this).find('.expand').length){
+            if($(this).hasClass('active')){
+                $(this).find('.expand').hide();
+                $(this).removeClass('active');
+            }else{
+                $( ".colrow.pricing_list .expand" ).hide();
+                $( ".colrow.pricing_list.active" ).removeClass('active');
+                $(this).addClass('active');
+                $(this).find('.expand').show();
+            }
+        }
+    });
+
+    var currancy_cookie = getCookie('cookie_currancy');
+	if (currancy_cookie !== ''){
+		var element = $('.currancies').find("[data-currancy='" + currancy_cookie + "']");
+		changeCurrancy(element);
+	}
+
+	$('.currancies.new .btn').click(function() {
+		changeCurrancy(this);
+	});
+//     var currancyTime_cookie = getCookie('cookie_currancyTime');
+// 	if (currancyTime_cookie !== ''){
+// 		var element = $('.curranciesPayTime').find("[data-paytime='" + currancyTime_cookie + "']");
+// 		changeCurrancyTime(element);
+// 	}
+
+    if(jQuery('.curranciesPayTime [data-paytime="annually"]').hasClass('active')){
+        jQuery('.saveBlock').removeClass('invisible');
+    }else{
+        jQuery('.saveBlock').addClass('invisible');
+    }
+
+    $.removeCookie('cookie_currancyTime', 'null',  {path: "/"});
+
+    $('.curranciesPayTime .btn').click(function() {
+		changeCurrancyTime(this);
+	});
+});
+
+/* ================= PRICING PLANS ------> END  =================== */
+
+jQuery(document).ready(function ($) {
+    var scrollTop = $(window).scrollTop();
+    $('.parallax').css({top: (scrollTop / 3.)});
+
+//    if (scrollTop > $('#teamgate-header.frontpage:not(.menuIsOpened)').height()) {
+//
+//        $('#teamgate-header.frontpage:not(.menuIsOpened)').addClass('sticky animated slideInDown');
+//
+//    } else {
+//        $('#teamgate-header.frontpage:not(.menuIsOpened)').removeClass('sticky animated slideInDown');
+//    }
+
+    $('#teamgate-featured .featured-box').click(function () {
+
+        if( $(this).attr('data-target') && $(this).attr('data-target') != '#' ) {
+            window.location.href = $(this).attr('data-target');
+        }
+
+    });
+
+
+    $('.featured-box').hover(function () {
+
+        $('.teamgate-icon', this).stop(true, false).animate({
+            top: '-7px'
+
+        }, 300);
+        $('.teamgate-desc', this).stop(true, false).animate({
+            top: '7px'
+
+        }, 300);
+
+        $('.teamgate-title', this).stop(true, false).animate({
+            'letter-spacing': '1.5px'
+
+        }, 300);
+
+    }, function () {
+        $('.teamgate-icon', this).stop(true, false).animate({
+            top: '0px'
+
+        }, 300);
+        $('.teamgate-desc', this).stop(true, false).animate({
+            top: '0px'
+
+        }, 300);
+        $('.teamgate-title', this).stop(true, false).animate({
+            'letter-spacing': '1px'
+
+        }, 300);
+    });
+
+
+    $('.teamgate-blog-content').imagesLoaded(function () {
+        $('.teamgate-blog-content').masonry({
+            itemSelector: '.teamgate-blog-post',
+            gutter: 0,
+            transitionDuration: 0,
+        }).masonry('reloadItems');
+    });
+
+//     $('#primary-menu').slicknav({
+//         prependTo: $('.teamgate-header-menu'),
+//         label: ''
+//     });
+
+    $('.teamgate-search, #teamgate-search .fa.fa-close').click(function () {
+
+        $('#teamgate-search').fadeToggle(449)
+
+    });
+
+    // Homepage Overlay
+    $('#teamgate-overlay-trigger .fa').click(function () {
+
+        var selector = $('#teamgate-overlay-trigger');
+
+        if (selector.hasClass('open')) {
+
+            $('.overlay-widget').hide();
+            selector.removeClass('open animated slideInUp');
+
+        } else {
+
+            selector.addClass('open animated slideInUp');
+            $('.overlay-widget').fadeIn(330);
+        }
+
+    });
+
+    // scroll to top trigger
+    $('.scroll-top').click(function () {
+        $("html, body").animate({scrollTop: 0}, 1000);
+        return false;
+    });
+
+    // scroll to top trigger
+    $('.scroll-down').click(function () {
+
+        $("html, body").animate({
+            scrollTop: ($(window).height() - 85)
+        }, 1000);
+
+        return false;
+
+    });
+
+
+
+    // Parallax
+    $(window).scroll(function () {
+//if ($(window).width() < 768) {
+//        var s = $(window).scrollTop();
+//        $('.parallax').css({top: (s / 3.)});
+//    if (s > 0) {
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').addClass('scrolled');
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').closest('header').find('.top-menu-wrap').addClass('scrolled');
+//        } else {
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').removeClass('scrolled');
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').closest('header').find('.top-menu-wrap').removeClass('scrolled');
+//        }
+//}
+//else {
+//    var s = $(window).scrollTop();
+//        $('.parallax').css({top: (s / 3.)});
+//        if (s > $('#teamgate-header.frontpage:not(.menuIsOpened)').height()) {
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').addClass('scrolled');
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').closest('header').find('.top-menu-wrap').addClass('scrolled');
+//        } else {
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').removeClass('scrolled');
+//            $('#teamgate-header.frontpage:not(.menuIsOpened)').closest('header').find('.top-menu-wrap').removeClass('scrolled');
+//        }
+//}
+
+    });
+
+    // ------------
+    var teamgateWow = new WOW({
+        boxClass: 'reveal',
+        animateClass: 'animated',
+        offset: 150
+
+    });
+
+    teamgateWow.init();
+    var windowWidth = $(window).width();
+    var documentHeight = $(document).height();
+    var windowHeight = $(window).height();
+    $('#site-navigation').css({height:windowHeight});
+    $('.teamgate-header-menu').css({height:windowHeight});
+    if ($(window).width() < 768) {
+    $('#teamgate-header .slicknav_menu').css({height:windowHeight, overflowY:'auto'});
+}
+else {
+   $('#teamgate-header .slicknav_menu').css({height:'auto', overflowY:'hidden'});
+}
+//    if( documentHeight < windowHeight ){
+//        $('.teamgate-header-menu').css({width:windowWidth, height:windowHeight});
+//    }else{
+//        $('.teamgate-header-menu').css({width:windowWidth, height:documentHeight});
+//    }
+    $( window ).resize(function() {
+        var windowWidth = $(window).width();
+        var documentHeight = $(document).height();
+        var windowHeight = $(window).height();
+        $('#site-navigation').css({height:windowHeight});
+        $('.teamgate-header-menu').css({height:windowHeight});
+        if ($(window).width() < 768) {
+            $('#teamgate-header .slicknav_menu').css({height:windowHeight, overflowY:'auto'});
+        }
+        else {
+           $('#teamgate-header .slicknav_menu').css({height:'auto', overflowY:'hidden'});
+        }
+        if ($(window).width() < 992) {
+            $('.TGMainMenu').addClass('mobile');
+            $('body').addClass('mobile');
+        }
+        else {
+           $('.TGMainMenu.mobile').removeClass('mobile');
+           $('body.mobile').removeClass('mobile');
+        }
+//        if( documentHeight < windowHeight ){
+//            $('.teamgate-header-menu').css({width:windowWidth, height:windowHeight});
+//        }else{
+//            $('.teamgate-header-menu').css({width:windowWidth, height:documentHeight});
+//        }
+    });
+    $( "#menu-click" ).on( "click", function() {
+        if ($(this).hasClass('is-active')) {
+            $(this).closest('body').find('#teamgate-header').hide();
+            $(this).closest('body').find('.TGMenu .primary-menu').hide();
+            $(this).closest('body').find('.TGMainMenu').removeClass('active');
+            $(this).closest('.site-header').removeClass('is-active');
+            $(this).removeClass('is-active');
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+            $(this).closest('.site-header').addClass('is-active');
+            $(this).closest('body').find('.TGMainMenu').addClass('active');
+            $(this).closest('body').find('.TGMenu .primary-menu').show();
+            $(this).closest('body').find('#teamgate-header').show();
+            $(this).addClass('is-active');
+            var contentH = $(window).outerHeight(true)-70;
+            $(this).closest('.site-header').find('.menuBlock').css({height:contentH});
+            $(this).closest('.site-header').find('.menuBlock .primary-menu').css({height:contentH});
+        }
+    });
+
+    var menuHasChildren = jQuery('.site-header .primary-menu > li.menu-item-has-children');
+    menuHasChildren.each(function( index ) {
+        var submenuItems = jQuery(this).find('.sub-menu-block.subMenuBlockDepth-0 ul li');
+        if(submenuItems.data('columnid')===''){
+            jQuery(this).find('.sub-menu-block').remove();
+            jQuery(this).removeClass('menu-item-has-children');
+        }
+    });
+    $( ".site-header .primary-menu .menu-item-has-children > a" ).on( "click", function() {
+        jQuery('.newMenuBlock').remove();
+        var parentLi = $(this).closest('li');
+//        $( ".primary-menu .menu-item.active" ).removeClass('active');
+//        $( ".primary-menu .menu-item.is-active" ).removeClass('is-active');
+
+        if (parentLi.hasClass('is-active')) {
+            parentLi.find('.sub-menu-block').hide();
+            parentLi.removeClass('is-active');
+            parentLi.removeClass('active');
+            parentLi.closest('#teamgate-header').removeClass('is-active');
+        } else {
+            $( ".site-header .sub-menu-block.subMenuBlockDepth-0" ).hide();
+            $( ".site-header .primary-menu .menu-item.active" ).removeClass('active');
+            $( ".site-header .primary-menu .menu-item.is-active" ).removeClass('is-active');
+            parentLi.addClass('active');
+            parentLi.find('.sub-menu-block').show();
+            parentLi.addClass('is-active');
+            parentLi.closest('#teamgate-header').addClass('is-active');
+
+            var yourArray = [];
+            var elementsArray = [];
+            jQuery('.site-header .primary-menu li.active .sub-menu-block.subMenuBlockDepth-0 > ul > li').each(function( index ) {
+                yourArray.push( jQuery( this ).data('columnid'));
+            });
+            var maxColumnCount = Math.max.apply(Math,yourArray);
+            var columnSize = 12/maxColumnCount;
+            var columnSizeString = columnSize.toString();
+            var columnSizeClass = columnSizeString.replace(".", "-");
+            jQuery('.site-header .primary-menu li.active .sub-menu-block.subMenuBlockDepth-0').append('<div class="newMenuBlock sub-menu row"></div>');
+            var newMenuBlock = jQuery('.site-header .primary-menu li.active .sub-menu-block.subMenuBlockDepth-0 .newMenuBlock');
+            function appendTitles() {
+                for (var i=1; i<=maxColumnCount; i++) {
+                    newMenuBlock.append('<div class="newColumn col-xs-'+columnSizeClass+'" data-columnid="'+i+'"></div>');
+                }
+            }
+            function appendMenus() {
+                for (var i=1; i<=maxColumnCount; i++) {
+                    var menuElement = jQuery('.site-header .primary-menu li.active .sub-menu-block.subMenuBlockDepth-0 > ul > li[data-columnid="'+i+'"]');
+                    var appendToBlock = jQuery('.site-header .newMenuBlock .newColumn[data-columnid="'+i+'"]');
+                    menuElement.each(function( index ) {
+                        appendToBlock.append('<div class="firstLevelItem '+jQuery(this)[0]['className']+'">'+jQuery(this).html()+'</div>');
+                    });
+                }
+            }
+            appendTitles();
+            appendMenus();
+            jQuery('.site-header .sub-menu-block.subMenuBlockDepth-0 > ul.sub-menu').hide();
+//            var secondLevelMenuLength = jQuery('.primary-menu li.active .sub-menu-block.subMenuBlockDepth-0 > ul > li').length;
+//            if(secondLevelMenuLength < 6){
+//                var columnSize = 12/secondLevelMenuLength;
+//                var columnSizeString = columnSize.toString();
+//                var columnSizeClass = columnSizeString.replace(".", "-");
+//                jQuery('.primary-menu li.active .sub-menu-block.subMenuBlockDepth-0 > ul > li').addClass('col-xs-'+columnSizeClass);
+//            }
+        }
+        var baseUrl = document.location.origin;
+        if($('#teamgate-header.light').hasClass('is-active')){
+            $(this).closest('.site-header').find('#teamgate-header .primary_logo img').attr('src',baseUrl+'/wp-content/themes/Teamgate/inc/images/logo-color.svg');
+        }else{
+            $(this).closest('.site-header').find('#teamgate-header .primary_logo img').attr('src',baseUrl+'/wp-content/themes/Teamgate/inc/images/logo-white.svg');
+        }
+    });
+    $('.primary-menu').outside('click', function(){
+        $('.primary-menu .menu-item-has-children').removeClass('is-active');
+        $('.primary-menu .menu-item-has-children').removeClass('active');
+        $('#teamgate-header').removeClass('is-active');
+        $('.primary-menu .menu-item-has-children').find('.sub-menu-block').hide();
+        $('.newMenuBlock').remove();
+    });
+    $( ".primary-menu-mobile .menu-item-has-children > a" ).on( "click", function() {
+        var parentLi = $(this).closest('li');
+        if (parentLi.hasClass('is-active')) {
+            parentLi.closest('.mobile-menu').removeClass('sub-opened');
+            parentLi.removeClass('is-active');
+        } else {
+            parentLi.addClass('active');
+            parentLi.closest('.mobile-menu').addClass('sub-opened');
+            parentLi.addClass('is-active');
+        }
+    });
+    $( "#close-menu" ).on( "click", function() {
+        var showBtn = $(this).closest('body').find('#menu-click');
+        if (showBtn.hasClass('is-active')) {
+            showBtn.closest('body').find('.TGMainMenu .TGMenu').slideUp();
+            showBtn.closest('body').find('.TGMainMenu.active').removeClass('active');
+            showBtn.removeClass('is-active');
+        } else {
+            showBtn.addClass('active');
+            showBtn.closest('body').find('.TGMainMenu .TGMenu').slideDown();
+            showBtn.closest('body').find('.TGMainMenu').addClass('active');
+            showBtn.addClass('is-active');
+        }
+    });
+//    $( ".menuBtn" ).on( "click", function() {
+//        if($(this).hasClass('active')){
+////            $(this).closest('body').find('.teamgate-header-menu').slideUp();
+//            $(this).closest('body').find('.hamburger').removeClass('is-active');
+//            $(this).closest('body').removeClass('menuIsOpened');
+//            $(this).closest('body').find('#authica-social').removeClass('menuIsOpened');
+//            $(this).closest('body').find('#teamgate-header').removeClass('menuIsOpened');
+////            var s = $(window).scrollTop();
+////            $('.parallax').css({top: (s / 3.)});
+////            if (s > $('#teamgate-header.frontpage').height()) {
+////
+////                $('#teamgate-header.frontpage').addClass('sticky animated slideInDown');
+////
+////            } else {
+////                $('#teamgate-header.frontpage').removeClass('sticky animated slideInDown');
+////            }
+//            $(this).removeClass('active');
+//        }else{
+//            $(this).addClass('active');
+//            $(this).closest('body').find('.teamgate-header-menu').slideDown();
+//            $(this).closest('body').find('.hamburger').addClass('is-active');
+//            $(this).closest('body').addClass('menuIsOpened');
+//            $(this).closest('body').find('#authica-social').addClass('menuIsOpened');
+//            $(this).closest('body').find('#teamgate-header').addClass('menuIsOpened');
+//        }
+//    });
+    jQuery('.inputBlock .input.en').typer(['How can I capture Leads in Teamgate?', 'How can I see my emails?', 'Is it possible to call from CRM?', 'How can I sync my Google Calendar?',
+    'Can I set goals for my sales reps?', 'How can I get a forecast for next month?', 'How can I track an email campaign\'s status?', 'Can I record my calls?', 'How can I import my contacts?', 'How can I merge duplicates?'],{
+            delay: 2000
+        });
+    jQuery('.inputBlock .input.lt').typer(['Ar galiu importuoti kontaktus?', 'Kaip matyti savo pardavimų prognozę?', 'Kur galiu matyti komandos aktyvumą?',
+        'Ar galiu skambinti tiesiai iš CRM?', 'Ar galiu prisegti elektroninius laiškus?', 'Kaip matyti naujienlaiškių kampanijas?',
+        'Kaip perkelti duomenis iš kitos sistemos?', 'Ar galiu sinchronizuoti įvykius su savo kalendoriumi?', 'Kaip pakviesti kolegą dirbti kartu?'],{
+            delay: 2000
+        });
+
+    jQuery( ".inputBlock.en .inputButton" ).on( "click", function() {
+        var newSearch = jQuery('.newSearch').text();
+        var Link = 'http://support.teamgate.com/hc/en-us/search?utf8=%E2%9C%93&query='+newSearch+'&commit=Search';
+        if( newSearch!== '' ){
+                window.open(
+                  Link,
+                  '_blank'
+                );
+        }
+    });
+    jQuery( ".inputBlock.lt .inputButton" ).on( "click", function() {
+        var newSearch = jQuery('.newSearch').text();
+        var Link = 'http://support.teamgate.com/hc/lt/search?utf8=%E2%9C%93&query='+newSearch+'&commit=Search';
+        if( newSearch!== '' ){
+            window.open(
+              Link,
+              '_blank'
+            );
+        }
+    });
+    jQuery('.inputBlock.en').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           jQuery('.inputBlock.en .inputButton').click();
+            var newSearch = jQuery('.inputBlock.en .newSearch').val();
+            var Link = 'http://support.teamgate.com/hc/en-us/search?utf8=%E2%9C%93&query='+newSearch+'&commit=Search';
+            if( newSearch!== '' ){
+                window.open(
+                    Link,
+                    '_blank'
+                );
+            }
+         }
+    });
+    jQuery('.inputBlock.lt').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           jQuery('.inputBlock.lt .inputButton').click();
+            var newSearch = jQuery('.inputBlock.lt .newSearch').val();
+            var Link = 'http://support.teamgate.com/hc/lt/search?utf8=%E2%9C%93&query='+newSearch+'&commit=Search';
+            if( newSearch!== '' ){
+                window.open(
+                    Link,
+                    '_blank'
+                );
+            }
+         }
+    });
+    var switchToInput = function () {
+        var $input = $("<input>", {
+            val: $(this).text(),
+            type: "text"
+            //placeholder:'insert search text here...'
+        });
+        $input.addClass("newSearch");
+        $(this).replaceWith($input);
+        $input.val('').focus();
+        $input.on("blur", switchToSpan);
+
+        //$input.select();
+    };
+    var switchToSpan = function () {
+        var $span = $("<span>", {
+            text: $(this).val()
+        });
+        $span.addClass("newSearch");
+        $(this).replaceWith($span);
+        $span.on("click", switchToInput);
+    }
+    var switchToTyper = function () {
+        $('input.newSearch').after('<div class="input en"></div>');
+        $('input.newSearch').remove();
+        jQuery('.inputBlock .input.en').typer(['How to create new deal?', 'How to create custom field for companies?', 'How to use a pipeline?']);
+    }
+    $(".searchInputBlock .inputBlock .input").on("click", switchToInput);
+
+    if ($(window).width() < 992) {
+        $('body').addClass('mobile');
+        $('.TGMainMenu').addClass('mobile');
+    }
+    else {
+       $('.TGMainMenu.mobile').removeClass('mobile');
+       $('body.mobile').removeClass('mobile');
+    }
+
+
+
+    jQuery('#primary-menu .menu-item[data-columnid="1"]').appendTo('.menuColumn.column1');
+    jQuery('#primary-menu .menu-item[data-columnid="2"]').appendTo('.menuColumn.column2');
+    jQuery('#primary-menu .menu-item[data-columnid="3"]').appendTo('.menuColumn.column3');
+    jQuery('.temporaryMenu').remove();
+});
+(function($){
+   $.fn.outside = function(ename, cb){
+      return this.each(function(){
+         var $this = $(this),
+              self = this;
+         $(document.body).bind(ename, function tempo(e){
+             if(e.target !== self && !$.contains(self, e.target)){
+                cb.apply(self, [e]);
+                if(!self.parentNode) $(document.body).unbind(ename, tempo);
+             }
+         });
+      });
+   };
+}(jQuery));

@@ -1,0 +1,213 @@
+
+/*img flip start*/
+.box-scene {
+    -webkit-perspective: 10000px;
+    perspective: 10000px;
+    width: 270px;
+    height: 270px;
+    margin: auto;
+
+    z-index: 999;
+}
+.box-scene:hover .box {
+    -webkit-transform: rotateY(-90deg);
+    -moz-transform: rotateY(-90deg);
+    -ms-transform: rotateY(-90deg);
+
+
+}
+.box {
+    width: 270px;
+    height: 270px;
+    position: relative;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -ms-transition: all 0.4s ease-out;
+    -webkit-transform-origin: 135px 135px -135px;
+    -moz-transform-origin: 135px 135px -135px;
+    -ms-transform-origin: 135px 135px -135px;
+
+    /* float: left; */
+
+
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -ms-backface-visibility: visible;
+
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+}
+.front {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    background: #d9d9d9;
+}
+.side {
+    background: #9dcc78;
+    -webkit-transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
+    -ms-transform: rotateY(90deg);
+    z-index: 1;
+    left: 270px;
+}
+.side p{
+    margin-top:0;
+}
+
+
+/*img flip end*/
+
+
+.ourTeamBlock .imgBlock{
+    position:relative;
+    margin-top:55px;
+}
+.ourTeamBlock .imgBlock .imgTextBlock{
+    position: absolute;
+    bottom: 85px;
+    text-align: center;
+    color: #fff;
+}
+.teamMemberdesc .name, .teamMemberdesc .nameOnHover{
+    font-size:22px;
+    font-weight:600;
+    text-transform:uppercase;
+    text-align:center;
+    color:#fff;
+    margin: 0;
+    margin-top: 15px;
+}
+.teamMemberdesc .membeQoute, .teamMemberdesc .memberPosition{
+    font-size:15px;
+    font-weight:400;
+    text-align:center;
+    color:#fff;
+    margin: 0;
+    margin-top: 15px;
+    min-height:50px;
+}
+
+.teamMemberdesc .membeQoute, .teamMemberdesc .nameOnHover{
+    display:none;
+}
+.box-scene:hover + .teamMemberdesc .name{
+    display:none;
+}
+.box-scene:hover + .teamMemberdesc .memberPosition{
+    display:none;
+}
+.box-scene:hover + .teamMemberdesc .nameOnHover{
+    display:block;
+}
+.box-scene:hover + .teamMemberdesc .membeQoute{
+    display:block;
+}
+.teamSlideHeader p{
+    font-size:40px;
+    font-weight:300;
+}
+.teamSlideHeader p strong{
+    color:#44b8c8;
+    font-weight:700;
+}
+
+.carouselBlock .slide h3 + p{
+    text-align:justify;
+}
+.carouselBlock .slide .overviewDesc{
+    text-align:justify;
+}
+
+.mainTitle{
+    text-align:center;
+}
+.mainTitle.secondary img{
+    max-width:130px !important;
+    height:auto !important;
+    margin:0 auto;
+    display:inline-block;
+}
+.mainTitle.secondary p{
+    font-size:18px !important;
+    vertical-align:bottom;
+    display:inline-block;
+    margin: 0 !important;
+    margin-left: 10px !important;
+}
+.mainTitle h1{
+    font-size: 60px;
+    line-height: 22px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    margin-bottom: 55px !important;
+    margin-top: 0 !important;
+}
+.mainTitle p{
+    font-size: 40px;
+    line-height: 22px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    margin-bottom: 80px !important;
+}
+.mainTitle p strong{
+    font-size: 40px;
+    line-height: 22px;
+    font-weight: 700;
+    color: rgb(79, 216, 235);
+}
+.mainTitle .heroBtn.full{
+    height: 45px;
+    border: 1px solid #44b8c8 !important;
+    border-radius: 25px !important;
+    font-size: 15px !important;
+    text-transform: uppercase;
+    background: #44b8c8 !important;
+    padding-top: 13px !important;
+    color: #fff;
+    padding: 12px 25px !important;
+    font-weight: 600 !important;
+    margin-right: 15px !important;
+    display:inline-block;
+}
+.mainTitle .heroBtn.full:hover{
+    border: 1px solid #188b9b !important;
+    background: #188b9b !important;
+}
+.mainTitle .heroBtn{
+    height: 45px;
+    border: 1px solid #fff !important;
+    border-radius: 25px !important;
+    font-size: 15px !important;
+    text-transform: uppercase;
+    background: transparent !important;
+    padding-top: 13px !important;
+    color: #fff;
+    padding: 12px 25px !important;
+    font-weight: 600 !important;
+    display:inline-block;
+}
+.mainTitle .heroBtn:hover{
+    border: 1px solid #44b8c8 !important;
+    background: #44b8c8 !important;
+}
+
+
+#team-area {
+    background-color: #03A9F4;
+    float: left;
+    padding: 10px;
+}
